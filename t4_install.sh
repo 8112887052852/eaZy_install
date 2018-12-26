@@ -48,12 +48,18 @@ echo
 
 rustup="rustup.sh"
 
-curl https://sh.rustup.rs --output "$rustup"
+curl https://sh.rustup.rs -s --output "$rustup"
 sudo chmod 777 "$rustup"
 "./$rustup" -y
 rm "$rustup"
 
 source $HOME/.cargo/env
+
+echo
+echo "***** Installing ripgrep *****"
+echo
+
+cargo install ripgrep
 
 echo
 echo '***** Upgrading packages *****'
