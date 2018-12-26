@@ -40,7 +40,7 @@ echo
 echo "***** Installing dev packages *****"
 echo
 
-sudo aptitude install -y build-essential clang cmake git subversion vim
+sudo aptitude install -y build-essential clang cmake emacs git subversion terminator vim
 
 echo
 echo '***** Upgrading packages *****'
