@@ -19,6 +19,24 @@ echo
 sudo aptitude update
 
 echo
+echo '***** Installing git *****'
+echo
+
+sudo aptitude install -y git
+
+echo
+echo '***** Git configuration *****'
+echo
+
+ssh-keygen -t rsa -C "${USER}@$(hostname)"
+
+read -p "Enter git name: " gitname
+read -p "Enter git email: " gitemail
+
+git config --global user.name "$gitname"
+git config --global user.email "$gitemail"
+
+echo
 echo "***** Installing dev packages *****"
 echo
 
@@ -29,9 +47,3 @@ echo '***** Upgrading packages *****'
 echo
 
 sudo aptitude upgrade -y
-
-echo
-echo '***** Git configuration *****'
-echo
-
-ssh-keygen -t rsa -C "${USER}@$(hostname)"
