@@ -43,6 +43,19 @@ echo
 sudo aptitude install -y build-essential clang cmake emacs git subversion terminator vim
 
 echo
+echo "***** Installing rust *****"
+echo
+
+rustup="rustup.sh"
+
+curl https://sh.rustup.rs --output "$rustup"
+sudo chmod 777 "$rustup"
+"./$rustup" -y
+rm "$rustup"
+
+source $HOME/.cargo/env
+
+echo
 echo '***** Upgrading packages *****'
 echo
 
