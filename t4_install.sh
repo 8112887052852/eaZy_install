@@ -25,16 +25,35 @@ echo
 sudo aptitude install -y git
 
 echo
-echo '***** Git configuration *****'
+echo '***** git configuration *****'
 echo
 
-ssh-keygen -t rsa -C "${USER}@$(hostname)"
+if [ ! -f ~/.ssh/id_rsa ]; then
+	ssh-keygen -Q -f ~/.ssh/id_rsa -t rsa -C "${USER}@$(hostname)"
+fi
 
-read -p "Enter git name: " gitname
-read -p "Enter git email: " gitemail
+case $(git config user.name) in
+	(*[![:blank:]]*)
+		echo "git user already configured"
+		;;
+	(*)
+		read -p "Enter git name: " gitname
+		git config --global user.name "$gitname"
+		;;
+esac
 
-git config --global user.name "$gitname"
-git config --global user.email "$gitemail"
+case $(git config user.email) in
+	(*[![:blank:]]*)
+		echo "git email already configured"
+		;;
+	(*)
+		read -p "Enter git email: " gitemail
+		git config --global user.email "$gitemail"
+		;;
+esac
+
+git config --global --bool pull.rebase true
+git config --global push.default current
 
 echo
 echo "***** Installing dev packages *****"
