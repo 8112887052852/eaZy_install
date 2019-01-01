@@ -68,6 +68,18 @@ echo
 sudo aptitude install -y zsh
 
 echo
+echo "***** Installing OhMyZSH *****"
+echo
+
+zshinstall="zsh-install.sh"
+
+curl https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -fsSL --output "$zshinstall"
+patch "$zshinstall" "zsh-install.patch"
+sudo chmod 777 "$zshinstall"
+"./$zshinstall"
+rm "$zshinstall"
+
+echo
 echo "***** Installing chromium *****"
 echo
 
@@ -79,7 +91,7 @@ echo
 
 rustup="rustup.sh"
 
-curl https://sh.rustup.rs -s --output "$rustup"
+curl https://sh.rustup.rs -sS --output "$rustup"
 sudo chmod 777 "$rustup"
 "./$rustup" -y
 rm "$rustup"
