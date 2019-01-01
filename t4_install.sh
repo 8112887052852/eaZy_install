@@ -62,6 +62,12 @@ echo
 sudo aptitude install -y build-essential clang cmake emacs git subversion terminator vim
 
 echo
+echo "***** Installing zsh *****"
+echo
+
+sudo aptitude install -y zsh
+
+echo
 echo "***** Installing chromium *****"
 echo
 
