@@ -90,10 +90,16 @@ mv PowerlineSymbols.otf ~/.fonts/
 mkdir -p .config/fontconfig/conf.d
 
 echo
-echo "***** Updating font cache *****"
+echo "***** Updating font cache [OhMyZSH] *****"
 echo
 
 fc-cache -vf ~/.fonts/
+
+echo
+echo "***** Applying font config [OhMyZsh] *****"
+echo
+
+mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 
 echo
 echo "***** Installing chromium *****"
