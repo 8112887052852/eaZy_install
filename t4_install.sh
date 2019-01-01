@@ -80,6 +80,16 @@ sudo chmod 777 "$zshinstall"
 rm "$zshinstall"
 
 echo
+echo "***** Installing fonts for ZSH *****"
+echo
+
+wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+mkdir ~/.fonts/
+mv PowerlineSymbols.otf ~/.fonts/
+mkdir -p .config/fontconfig/conf.d
+
+echo
 echo "***** Installing chromium *****"
 echo
 
