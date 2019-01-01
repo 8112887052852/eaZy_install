@@ -62,6 +62,46 @@ echo
 sudo aptitude install -y build-essential clang cmake emacs git subversion terminator vim
 
 echo
+echo "***** Installing zsh *****"
+echo
+
+sudo aptitude install -y zsh
+
+echo
+echo "***** Installing OhMyZSH *****"
+echo
+
+zshinstall="zsh-install.sh"
+
+curl https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -fsSL --output "$zshinstall"
+patch "$zshinstall" "zsh-install.patch"
+sudo chmod 777 "$zshinstall"
+"./$zshinstall"
+rm "$zshinstall"
+
+echo
+echo "***** Installing fonts for ZSH *****"
+echo
+
+wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+mkdir ~/.fonts/
+mv PowerlineSymbols.otf ~/.fonts/
+mkdir -p .config/fontconfig/conf.d
+
+echo
+echo "***** Updating font cache [OhMyZSH] *****"
+echo
+
+fc-cache -vf ~/.fonts/
+
+echo
+echo "***** Applying font config [OhMyZsh] *****"
+echo
+
+mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+
+echo
 echo "***** Installing chromium *****"
 echo
 
@@ -73,7 +113,7 @@ echo
 
 rustup="rustup.sh"
 
-curl https://sh.rustup.rs -s --output "$rustup"
+curl https://sh.rustup.rs -sS --output "$rustup"
 sudo chmod 777 "$rustup"
 "./$rustup" -y
 rm "$rustup"
