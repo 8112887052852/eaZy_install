@@ -43,6 +43,12 @@ echo
 sudo aptitude install -y build-essential clang cmake emacs git subversion terminator vim
 
 echo
+echo "***** Installing chromium *****"
+echo
+
+sudo aptitude install -y chromium-browser
+
+echo
 echo "***** Installing rust *****"
 echo
 
